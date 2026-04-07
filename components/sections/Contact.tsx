@@ -85,28 +85,28 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-surface-container p-8 rounded-3xl border border-outline-variant"
+            className="bg-surface-container p-4  border border-outline-variant"
           >
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-400">Name</label>
-                  <input name="from_name" required className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface" placeholder="Mr Error" type="text" />
+                  <input name="from_name" required className="w-full bg-surface-container-lowest border border-outline-variant px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface" placeholder="Mr Error" type="text" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-zinc-400">Email</label>
-                  <input name="from_email" required className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface" placeholder="error@example.com" type="email" />
+                  <input name="from_email" required className="w-full bg-surface-container-lowest border border-outline-variant px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface" placeholder="error@example.com" type="email" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-zinc-400">Subject</label>
-                <input name="subject" required className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface" placeholder="Project Inquiry" type="text" />
+                <input name="subject" required className="w-full bg-surface-container-lowest border border-outline-variant px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface" placeholder="Project Inquiry" type="text" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-zinc-400">Message</label>
-                <textarea name="message" required className="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface resize-none" placeholder="Tell me about your project..." rows={5}></textarea>
+                <textarea name="message" required className="w-full bg-surface-container-lowest border border-outline-variant px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface resize-none" placeholder="Tell me about your project..." rows={5}></textarea>
               </div>
-              <button disabled={isSubmitting} className="w-full bg-primary text-on-primary py-4 rounded-xl font-bold hover:shadow-[0_0_20px_rgba(167,139,250,0.3)] transition-all active:scale-[0.98] disabled:opacity-70 flex items-center justify-center disabled:cursor-not-allowed" type="submit">
+              <button disabled={isSubmitting} className="w-full bg-primary text-on-primary py-4 font-bold hover:shadow-[0_0_20px_rgba(167,139,250,0.3)] transition-all active:scale-[0.98] disabled:opacity-70 flex items-center justify-center disabled:cursor-not-allowed" type="submit">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 mr-2 animate-spin" />

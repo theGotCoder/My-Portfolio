@@ -33,22 +33,24 @@ export default function Projects() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group relative aspect-video rounded-3xl overflow-hidden border border-outline-variant bg-surface-container"
+              className="group relative flex flex-col lg:block lg:aspect-video rounded-3xl overflow-hidden border border-outline-variant bg-surface-container"
             >
-              {/* Note: In a real app we'd use next/image here, but using standard img to easily handle external URLs from the layout */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent flex flex-col justify-end p-8">
-                <div className="glass-panel p-6 rounded-2xl translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+              {/* Mobile/Tablet View */}
+              <div className="lg:hidden flex flex-col h-full">
+                <div className="aspect-video relative overflow-hidden shrink-0">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6 flex flex-col grow bg-zinc-950/50">
                   <h3 className="text-2xl font-bold mb-2 text-on-surface">{project.title}</h3>
-                  <p className="text-on-surface-variant text-sm mb-4">{project.description}</p>
-                  <div className="flex gap-4">
+                  <p className="text-on-surface-variant text-sm mb-6 grow">{project.description}</p>
+                  <div className="flex gap-4 mt-auto">
                     {project.liveDemoUrl && project.liveDemoUrl !== "#" && (
                       <a
-                        className="text-primary text-sm font-bold flex items-center gap-1 hover:underline"
+                        className="text-primary text-sm font-bold flex items-center gap-1 hover:underline shadow-[0_0_10px_rgba(0,211,243,0.1)] px-4 py-2 bg-primary/10"
                         href={project.liveDemoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -58,7 +60,7 @@ export default function Projects() {
                     )}
                     {project.githubUrl && project.githubUrl !== "#" && (
                       <a
-                        className="text-zinc-400 text-sm font-bold flex items-center gap-1 hover:underline"
+                        className="text-secondary text-sm font-bold flex items-center gap-1 hover:underline px-4 py-2 bg-secondary/10 "
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -66,6 +68,43 @@ export default function Projects() {
                         GitHub <Code size={16} />
                       </a>
                     )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop View */}
+              <div className="hidden lg:block relative w-full h-full">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent flex flex-col justify-end p-8">
+                  <div className="glass-panel p-6 rounded-2xl translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <h3 className="text-2xl font-bold mb-2 text-on-surface">{project.title}</h3>
+                    <p className="text-on-surface-variant text-sm mb-4">{project.description}</p>
+                    <div className="flex gap-4">
+                      {project.liveDemoUrl && project.liveDemoUrl !== "#" && (
+                        <a
+                          className="text-primary text-sm font-bold flex items-center gap-1 hover:underline"
+                          href={project.liveDemoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Live Demo <ExternalLink size={16} />
+                        </a>
+                      )}
+                      {project.githubUrl && project.githubUrl !== "#" && (
+                        <a
+                          className="text-zinc-400 text-sm font-bold flex items-center gap-1 hover:underline hover:text-zinc-100"
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          GitHub <Code size={16} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

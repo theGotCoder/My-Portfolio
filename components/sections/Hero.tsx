@@ -46,13 +46,13 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a
-              className="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(167,139,250,0.4)] transition-all duration-300 active:scale-95 text-center"
+              className="bg-primary text-on-primary px-8 py-4  font-bold text-lg hover:shadow-[0_0_20px_rgba(167,139,250,0.4)] transition-all duration-300 active:scale-95 text-center"
               href="#projects"
             >
               {hero.primaryActionText}
             </a>
             <a
-              className="border border-outline-variant bg-surface-container-low text-on-surface px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-container transition-all duration-300 active:scale-95 text-center"
+              className="border border-outline-variant bg-surface-container-low text-on-surface px-8 py-4  font-bold text-lg hover:bg-surface-container transition-all duration-300 active:scale-95 text-center"
               href="#contact"
             >
               {hero.secondaryActionText}
