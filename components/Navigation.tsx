@@ -7,10 +7,34 @@ import { Download, Menu, X } from "lucide-react";
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      const sections = document.querySelectorAll("section[id]");
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        if (scrollPosition >= sectionTop) {
+          current = section.getAttribute("id") || "";
+        }
+      });
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        if (sections.length > 0) {
+          current = sections[sections.length - 1].getAttribute("id") || "";
+        }
+      }
+
+      setActiveSection(current);
+    };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // determine section on load
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -36,16 +60,16 @@ export default function Navigation() {
       <div className="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
         <div className="text-xl font-bold tracking-tighter text-zinc-50">ANIS HABIB</div>
         <div className="hidden md:flex items-center space-x-8 font-sans text-sm tracking-tight font-medium">
-          <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#stack">
+          <a className={`transition-colors duration-200 ${activeSection === 'stack' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#stack">
             Stack
           </a>
-          <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#projects">
+          <a className={`transition-colors duration-200 ${activeSection === 'projects' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#projects">
             Projects
           </a>
-          <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#experience">
+          <a className={`transition-colors duration-200 ${activeSection === 'experience' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#experience">
             Experience
           </a>
-          <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#contact">
+          <a className={`transition-colors duration-200 ${activeSection === 'contact' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#contact">
             Contact
           </a>
         </div>
@@ -85,16 +109,16 @@ export default function Navigation() {
               </button>
             </div>
             <div className="flex flex-col items-center justify-center flex-1 space-y-8 font-sans text-lg tracking-tight font-medium">
-              <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#stack" onClick={() => setMobileMenuOpen(false)}>
+              <a className={`transition-colors duration-200 ${activeSection === 'stack' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#stack" onClick={() => setMobileMenuOpen(false)}>
                 Stack
               </a>
-              <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#projects" onClick={() => setMobileMenuOpen(false)}>
+              <a className={`transition-colors duration-200 ${activeSection === 'projects' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#projects" onClick={() => setMobileMenuOpen(false)}>
                 Projects
               </a>
-              <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#experience" onClick={() => setMobileMenuOpen(false)}>
+              <a className={`transition-colors duration-200 ${activeSection === 'experience' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#experience" onClick={() => setMobileMenuOpen(false)}>
                 Experience
               </a>
-              <a className="text-zinc-400 hover:text-zinc-100 transition-colors duration-200" href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              <a className={`transition-colors duration-200 ${activeSection === 'contact' ? 'text-primary font-semibold' : 'text-zinc-400 hover:text-zinc-100'}`} href="#contact" onClick={() => setMobileMenuOpen(false)}>
                 Contact
               </a>
               <a
