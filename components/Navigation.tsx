@@ -14,6 +14,19 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -60,7 +73,7 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-50 flex flex-col bg-zinc-950"
+            className="fixed inset-0 z-100 flex flex-col bg-zinc-950 h-dvh w-full"
           >
             <div className="flex justify-between items-center px-6 h-16 border-b border-zinc-800/50">
               <div className="text-xl font-bold tracking-tighter text-zinc-50">ANIS HABIB</div>
