@@ -38,6 +38,15 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Update URL hash without causing page jump when active section changes
+  useEffect(() => {
+    if (activeSection) {
+      window.history.replaceState(null, "", `#${activeSection}`);
+    } else if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [activeSection]);
+
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
